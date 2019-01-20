@@ -1,9 +1,14 @@
-# express-react-views
+# @joepie91/express-react-views
 
 This is an [Express][express] view engine which renders [React][react] components on server. It renders static markup and *does not* support mounting those views on the client.
 
 This is intended to be used as a replacement for existing server-side view solutions, like [jade][jade], [ejs][ejs], or [handlebars][hbs].
 
+## License
+
+This is a fork of the [`express-react-views`](https://github.com/reactjs/express-react-views) library, which is originally released under the BSD license. The conditional patent grant included in this repository *only* applies to the parts of the codebase that originate from the original library.
+
+Any changes or additions introduced in this fork may also be used under the [WTFPL](http://www.wtfpl.net/txt/copying/) or [CC0](https://creativecommons.org/publicdomain/zero/1.0/) license. If you make a contribution to this fork, other than merging in upstream changes, you agree that your contributions may be used under the WTFPL and CC0 licenses as well.
 
 ## Usage
 

@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require('react');
 var PropTypes = require('prop-types');
 var Layout = require('./layout');
