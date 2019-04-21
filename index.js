@@ -15,6 +15,8 @@ var beautifyHTML = require('js-beautify').html;
 var assign = require('object-assign');
 var _escaperegexp = require('lodash.escaperegexp');
 
+let LocalsContext = React.createContext({});
+
 var DEFAULT_OPTIONS = {
 	doctype: '<!DOCTYPE html>',
 	beautify: false,
@@ -69,7 +71,9 @@ function createEngine(engineOptions) {
 			// Transpiled ES6 may export components as { default: Component }
 			component = component.default || component;
 			markup += ReactDOMServer.renderToStaticMarkup(
-				React.createElement(component, options)
+				React.createElement(LocalsContext.Provider, {value: options},
+					React.createElement(component, options)
+				)
 			);
 		} catch (e) {
 			return cb(e);
@@ -97,3 +101,4 @@ function createEngine(engineOptions) {
 }
 
 exports.createEngine = createEngine;
+exports.LocalsContext = LocalsContext;
