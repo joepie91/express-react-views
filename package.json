@@ -1,7 +1,7 @@
 {
-  "name": "express-react-views",
+  "name": "@joepie91/express-react-views",
   "version": "0.10.5",
-  "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
+  "description": "This is (a fork of) an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
   "keywords": [
     "express",
     "view engine",
@@ -12,7 +12,10 @@
     "test": "node test",
     "lint": "eslint --ext js,jsx ."
   },
-  "author": "Paul O’Shannessy <paul@oshannessy.com>",
+  "contributors": [
+    "Paul O’Shannessy <paul@oshannessy.com>",
+    "Sven Slootweg <admin@cryto.net>"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/express-react-views.git"
