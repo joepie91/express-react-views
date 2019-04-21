@@ -127,6 +127,44 @@ class HelloMessage extends React.Component {
 module.exports = HelloMessage;
 ```
 
+### Locals from context
+
+Sometimes, eg. when dealing with layouts, you want to be able to access your template locals from any component in the rendering tree. This fork of the `express-react-views` module provides that functionality through the `LocalsContext` export.
+
+You should only use this API if explicitly passing in props would result in an unacceptable amount of boilerplate code. Always prefer explicitly-passed-in props where possible.
+
+The following example uses the Hooks API, but it will work with the older HOC-based approach, too. It's just easier and more readable to express context usage with Hooks.
+
+`views/layouts/default.jsx`:
+```js
+const React = require('react');
+const expressReactViews = require('express-react-views');
+
+module.exports = function DefaultLayout(props) {
+  let locals = React.useContext(expressReactViews.LocalsContext);
+
+  return (
+    <html>
+      <head><title>{locals.title}</title></head>
+      <body>{props.children}</body>
+    </html>
+  );
+};
+```
+
+`views/index.jsx`:
+```js
+const React = require('react');
+const DefaultLayout = require('./layouts/default');
+
+module.exports = function HelloMessage(props) {
+  return (
+    <DefaultLayout>
+      <div>Hello {props.name}</div>
+    </DefaultLayout>
+  );
+};
+```
 
 ## Questions
 
@@ -145,6 +183,9 @@ I know you're used to registering helpers with your view helper (`hbs.registerHe
 
 All "locals" are exposed to your view in `this.props`. These should work identically to other view engines, with the exception of how they are exposed. Using `this.props` follows the pattern of passing data into a React component, which is why we do it that way. Remember, as with other engines, rendering is synchronous. If you have database access or other async operations, they should be done in your routes.
 
+This fork of `express-react-views` also provides a context-based API, that lets you access template locals directly from within other components in your rendering tree. This brings the API closer to that of other view engines with template-global availability of locals, to reduce the amount of boilerplate necessary to work with eg. layouts.
+
+You should still carefully consider your usage of this API, though; pass locals into components explicitly where possible, and only use the context API if there's no other ergonomic way to accomplish your goal.
 
 ## Caveats
 
